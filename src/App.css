@@ -25,12 +25,11 @@ body, html {
 }
 
 .App-body {
-  min-width: 50rem;
+  min-width: 25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #5c5c5c;
 }
 
 .button{
