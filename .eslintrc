@@ -1,0 +1,542 @@
+env:
+  browser: true
+  es6: true
+  jest: true
+extends:
+  - eslint:recommended
+parser: babel-eslint
+parserOptions:
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+    jsx: true
+  sourceType: module
+  allowImportExportEverywhere: false
+  codeFrame: false
+  requireConfigFile: false
+plugins:
+  - react
+  - sort-class-members
+  - jsx
+  - import
+  - jest
+settings:
+  react:
+    version: "detect"
+
+# Inspired by:
+#   https://github.com/airbnb/javascript/tree/master/react
+#   https://github.com/airbnb/javascript
+#
+# changed rules:
+#   quotes
+#   react/jsx-boolean-value
+#   space-before-function-paren
+#   arrow-parens
+#   arrow-body-style
+
+rules:
+  #
+  # Common rules
+  #
+
+  # Prefer indent with 2 spaces
+  # fixable
+  indent:
+    - error
+    - 2
+
+  # There is only one OS
+  linebreak-style:
+    - error
+    - unix
+
+  # Java ang Go prefers this rigth way
+  # fixable
+  quotes:
+    - error
+    - double
+
+  # Use semicolons always
+  # why?
+  semi:
+    - error
+    - always
+
+  max-len:
+    - warn
+    - 120
+
+  # fixable
+  comma-style:
+    - error
+    - last
+
+  #
+  # Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the
+  # additional trailing comma in the transpiled code which means you don’t have to worry
+  # about the trailing comma problem in legacy browsers.
+  #
+  # fixable
+  comma-dangle:
+    - warn
+    - always-multiline
+
+  # fixable
+  eol-last:
+    - warn
+    - always
+
+  #
+  # Naming
+  #
+
+  # use camelCase, dude
+  camelcase:
+    - warn
+    - { "properties": never }
+
+  new-cap:
+    - error
+    - { "capIsNewExceptions": ["Record"] }
+
+  no-underscore-dangle:
+    - warn
+    - { "allow": ["__content__", "_t", "_f", "_own", "__value__"] }
+
+  #
+  # JS rules
+  #
+
+  # prevent reassign const, const is block-scoped
+  prefer-const:
+    - error
+  no-const-assign:
+    - error
+  no-undef:
+    - error
+
+  # never one declaration per line
+  one-var:
+    - warn
+    - never
+
+  no-plusplus:
+    - error
+
+  eqeqeq:
+    - error
+    - always
+
+  # case
+  no-case-declarations:
+    - error
+  no-fallthrough:
+    - error
+
+  # ternary
+  no-nested-ternary:
+    - error
+  no-unneeded-ternary:
+    - warn
+
+  # if brace style
+  brace-style:
+    - warn
+    - 1tbs
+
+  #
+  # Spacing
+  #
+  spaced-comment:
+    - warn
+    - always
+
+  keyword-spacing:
+    - error
+    - { before: true, after: true }
+
+  comma-spacing:
+    - warn
+    - { before: false, after: true }
+
+  computed-property-spacing:
+    - warn
+    - never
+
+  space-infix-ops:
+    - warn
+    - { "int32Hint": false }
+
+  semi-spacing:
+    - warn
+    - { before: false, after: true }
+
+  space-in-parens:
+    - warn
+    - never
+
+  array-bracket-spacing:
+    - warn
+    - never
+
+  # const y = {
+  #  long: 1,
+  #  s:    2
+  # };
+  #
+  # fixable
+  key-spacing:
+    - warn
+    - { beforeColon: false, afterColon: true, mode: strict, align: value }
+
+  object-curly-spacing:
+    - warn
+    - always
+
+  no-whitespace-before-property:
+    - warn
+
+  #
+  # Newlines
+  #
+
+  # fixable
+  newline-per-chained-call:
+    - warn
+    - { ignoreChainWithDepth: 2 }
+
+  # fixable
+  padded-blocks:
+    - warn
+    - never
+
+  #
+  # Declarations
+  #
+
+  # let is block-scoped, var is function-scoped. Prefer let
+  no-var:
+    - error
+
+  # use item = {} over item = new Object()
+  no-new-object:
+    - error
+
+  # disallow using computed key with literals e.g: {["a"]: 1}
+  no-useless-computed-key:
+    - warn
+
+  # https://github.com/airbnb/javascript#es6-object-shorthand
+  object-shorthand:
+    - warn
+
+  # quote props when needed
+  quote-props:
+    - error
+    - as-needed
+
+  no-array-constructor:
+    - error
+
+  no-iterator:
+    - error
+
+  # fixable
+  dot-notation:
+    - warn
+
+  # нельзя использовать map как forEach. map должен вернуть результат всегда
+  array-callback-return:
+    - error
+    - allowImplicit: false
+
+  #
+  # Strings
+  #
+
+  # avoid concatination strings
+  prefer-template:
+    - warn
+
+  # ${x} better then ${ x }
+  template-curly-spacing:
+    - warn
+    - never
+
+  # avoid useless escapes in strings for readability
+  no-useless-escape:
+    - warn
+
+  #
+  # Functions
+  #
+
+  # fixable
+  func-style:
+    - warn
+    - expression
+
+  no-loop-func:
+    - error
+
+  wrap-iife:
+    - warn
+
+  prefer-rest-params:
+    - warn
+
+  # https://github.com/airbnb/javascript#functions--mutate-params
+  no-param-reassign:
+    - error
+
+  no-new-func:
+    - error
+
+  # const f = function() {}
+  # fixable
+  space-before-function-paren:
+    - warn
+    - never
+  space-before-blocks:
+    - warn
+    - always
+
+  prefer-spread:
+    - warn
+
+  #
+  # Arrow functions
+  #
+
+  # fixable
+  arrow-spacing:
+    - warn
+    - { "before": true, "after": true }
+
+  # fixable
+  prefer-arrow-callback:
+    - warn
+
+  # arrow functions always in form () => {return "";};
+  # fixable
+  arrow-parens:
+    - warn
+    - always
+  arrow-body-style:
+    - warn
+    - always
+
+  no-confusing-arrow:
+    - error
+
+  #
+  # Classes
+  #
+  no-useless-constructor:
+    - error
+  no-dupe-class-members:
+    - error
+
+  sort-class-members/sort-class-members:
+    - warn
+    - order:
+        - "[static-properties]"
+        - "[properties]"
+        - "[static-methods]"
+        - "[conventional-private-properties]"
+        - constructor
+        - "[methods]"
+        - "[conventional-private-methods]"
+      accessorPairPositioning: getThenSet
+
+  #
+  # Import/Export
+  #
+  no-duplicate-imports:
+    - error
+  import/no-mutable-exports:
+    - error
+  import/prefer-default-export:
+    - warn
+  import/first:
+    - error
+
+  no-eval:
+    - error
+
+  # Clean code
+  no-console:
+    - warn
+    - allow: ["warn", "error"]
+
+  # Clean code
+  no-unused-vars:
+    - warn
+
+  #
+  # JSX Rules
+  #
+
+  # Force PascalCase file naming
+  react/jsx-pascal-case:
+    - error
+
+  # Prevents no-unused-vars when use imported components in jsx
+  react/jsx-uses-vars:
+    - error
+
+  # Prevents no-unused-vars for import React from "react"
+  react/jsx-uses-react:
+    - error
+
+  # Locate closing bracket tag-aligned
+  # fixable
+  react/jsx-closing-bracket-location:
+    - warn
+    - tag-aligned
+
+  # JSX tag spacing, prevent open tag on separate line like
+  #
+  #   <
+  #   Tag/>
+  #
+  # fixable
+  react/jsx-tag-spacing:
+    - warn
+    - { closingSlash: never, beforeSelfClosing: always, afterOpening: never }
+
+  # Curly spacing inside props:
+  #   x={good} y={ bad }
+  # fixeable
+  react/jsx-curly-spacing:
+    - warn
+
+  # Explicity pass boolean values
+  # <Cmp visible={true} />
+  # note: opposite airbnb styleguide
+  # fixable
+  react/jsx-boolean-value:
+    - warn
+    - always
+
+  # Always surround multilines jsx with ()
+  react/jsx-wrap-multilines:
+    - warn
+    - {
+        declaration: parens-new-line,
+        assignment: parens-new-line,
+        return: parens-new-line,
+        arrow: parens-new-line,
+        condition: "ignore",
+        logical: "ignore",
+        prop: "ignore",
+      }
+
+  # Multiline JSX Components should be multiline
+  react/jsx-first-prop-new-line:
+    - warn
+    - multiline-multiprop
+
+  # No bind or arrow functions inside JSX props. Avoid creating new objects inside render function.
+  # see: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+  react/jsx-no-bind:
+    - error
+
+  # allow JSX only in .jsx files
+  react/jsx-filename-extension:
+    - error
+    - { extensions: [.jsx] }
+
+  # JSX indent parent components with 2 spaces
+  react/jsx-indent:
+    - warn
+    - 2
+
+  react/jsx-indent-props:
+    - warn
+    - 2
+
+  # prevent runtime key warning
+  react/jsx-key:
+    - error
+
+  react/jsx-max-props-per-line:
+    - warn
+    - { maximum: 3, when: always }
+
+  react/jsx-equals-spacing:
+    - warn
+    - never
+
+  react/jsx-handler-names:
+    - warn
+    - { eventHandlerPrefix: on, eventHandlerPropPrefix: on }
+
+  #
+  # React rules
+  #
+
+  # Sort class code
+  # see: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
+  # fixable w/ react-codemod https://github.com/reactjs/react-codemod
+  react/sort-comp:
+    - warn
+    - order:
+        - "static-variables"
+        - "static-methods"
+        - "instance-variables"
+        - lifecycle
+        - "everything-else"
+        - render
+  #  - groups:
+  #      - lifecycle:
+  #        - "displayName"
+  #        - "propTypes"
+  #        - "contextTypes"
+  #        - "childContextTypes"
+  #        - "mixins"
+  #        - "statics"
+  #        - "defaultProps"
+  #        - "constructor"
+  #        - "getDefaultProps"
+  #        - "state"
+  #        - "getInitialState"
+  #        - "getChildContext"
+  #        - "getDerivedStateFromProps"
+  #        - "componentWillMount"
+  #        - "UNSAFE_componentWillMount"
+  #        - "componentDidMount"
+  #        - "componentWillReceiveProps"
+  #        - "UNSAFE_componentWillReceiveProps"
+  #        - "shouldComponentUpdate"
+  #        - "componentWillUpdate"
+  #        - "UNSAFE_componentWillUpdate"
+  #        - "getSnapshotBeforeUpdate"
+  #        - "componentDidUpdate"
+  #        - "componentDidCatch"
+  #        - "componentWillUnmoun"
+  # No isMounted
+  # see: https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
+  react/no-is-mounted:
+    - error
+
+  # Always return smth from render
+  react/require-render-return:
+    - error
+
+  # Ensure what React was imported in jsx
+  react/react-in-jsx-scope:
+    - error
+
+  # Only one Component per file
+  react/no-multi-comp:
+    - error
+
+  # ES6 classes
+  react/prefer-es6-class:
+    - warn
+
+  # Prefer stateless function except PureComponent usage
+  react/prefer-stateless-function:
+    - warn
+    - ignorePureComponents: true

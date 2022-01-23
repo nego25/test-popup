@@ -1,0 +1,44 @@
+.popup {
+  // необходимо раскомментировать, если необходимо, чтобы popup был поверх калькулятора
+  // width:100%;
+  // min-height:100%;
+  // background-color: rgba(0,0,0,0.5);
+  // overflow:hidden;
+  // position:fixed;
+  top: 0;
+  &-content {
+    max-width: 50rem;
+    overflow-wrap: break-word;
+    white-space: normal;
+
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.0625rem solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    padding: 1rem;
+
+    .results-wrapper {
+      padding: 1rem;
+      .results-text {
+        font-size: 1.5rem;
+        color: #5c5c5c;
+        user-select: none;
+
+      }
+    }
+
+    .close-button-wrapper {
+      .button {
+        background: rgb(217, 83, 79);
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+}
